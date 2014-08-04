@@ -1,14 +1,14 @@
-#N canvas 847 67 454 303 10;
+#N canvas 845 57 454 303 10;
 #X declare -path ./pd-net-sync/;
 #X declare -path .;
 #X declare -path ./common/;
 #X declare -path ./blockhead/;
 #X declare -path ./rjlib/rj;
 #X obj 13 63 hsl 128 32 0 127 0 0 \$0/cutoff acid/cutoff/r cutoff -2
--8 0 10 -262144 -1 -1 10500 1;
-#X obj 158 63 hsl 128 32 0 127 0 0 \$0/rez empty rez -2 -8 0 10 -262144
--1 -1 900 1;
-#N canvas 118 96 653 601 hookup 1;
+-8 0 10 -262144 -1 -1 9200 1;
+#X obj 156 63 hsl 128 32 0 127 0 0 \$0/rez empty rez -2 -8 0 10 -262144
+-1 -1 0 1;
+#N canvas 116 86 834 601 hookup 0;
 #X obj 15 66 r \$0/new;
 #X obj 176 34 / 2;
 #X obj 18 230 t f f;
@@ -119,6 +119,15 @@ bang \; acid/pickdecay bang \; acid/picksequence bang \;;
 #X msg 398 74 60;
 #X msg 392 529 60;
 #X obj 412 129 phasor~;
+#X obj 504 125 r \$0/swing;
+#X obj 504 227 s acid/swing;
+#X obj 575 125 r timer-1/bpm;
+#X obj 575 147 expr 60000 / $f1;
+#X obj 504 204 f;
+#X obj 504 177 sel 1;
+#X obj 504 153 f;
+#X obj 575 169 t b f;
+#X obj 602 191 / 12;
 #X connect 0 0 29 0;
 #X connect 1 0 4 0;
 #X connect 2 1 8 0;
@@ -159,23 +168,33 @@ bang \; acid/pickdecay bang \; acid/picksequence bang \;;
 #X connect 49 0 52 0;
 #X connect 50 0 49 0;
 #X connect 51 0 5 0;
-#X restore 239 309 pd hookup;
+#X connect 53 0 59 0;
+#X connect 55 0 56 0;
+#X connect 56 0 60 0;
+#X connect 57 0 54 0;
+#X connect 58 0 57 0;
+#X connect 58 1 54 0;
+#X connect 59 0 58 0;
+#X connect 60 0 59 0;
+#X connect 60 1 61 0;
+#X connect 61 0 57 1;
+#X restore 49 309 pd hookup;
 #X obj 13 113 hsl 128 32 0 127 0 0 \$0/decay acid/decay/r decay -2
--8 0 10 -262144 -1 -1 350 1;
-#X obj 156 114 nbx 5 32 1 4 0 0 \$0/pace acid/pace/r pace 0 -8 0 10
+-8 0 10 -262144 -1 -1 2100 1;
+#X obj 154 114 nbx 5 32 1 4 0 0 \$0/pace acid/pace/r pace 0 -8 0 10
 -262144 -1 -1 2 256;
-#X obj 226 114 nbx 5 32 -2 4 0 0 \$0/octave acid/octave/r octave 0
+#X obj 224 114 nbx 5 32 -2 4 0 0 \$0/octave acid/octave/r octave 0
 -8 0 10 -262144 -1 -1 0 256;
 #X obj 10 9 wordbutton 140 32 randomize;
-#X obj 361 26 taplist 64 28 note-1-set note-1 C C# D D# E F F# G G#
+#X obj 297 26 taplist 64 28 note-1-set note-1 C C# D D# E F F# G G#
 A A# B;
-#X obj 361 56 taplist 64 28 note-2-set note-2 C C# D D# E F F# G G#
+#X obj 297 56 taplist 64 28 note-2-set note-2 C C# D D# E F F# G G#
 A A# B;
-#X obj 361 87 taplist 64 28 note-3-set note-3 C C# D D# E F F# G G#
+#X obj 297 87 taplist 64 28 note-3-set note-3 C C# D D# E F F# G G#
 A A# B;
-#X obj 361 118 taplist 64 28 note-4-set note-4 C C# D D# E F F# G G#
+#X obj 297 118 taplist 64 28 note-4-set note-4 C C# D D# E F F# G G#
 A A# B;
-#X text 379 5 key;
+#X text 315 5 key;
 #N canvas 2 48 450 300 net 0;
 #X obj 262 11 declare -path ./pd-net-sync/;
 #X obj 34 89 netsync note-1 note-1/idx note-1-set;
@@ -183,10 +202,131 @@ A A# B;
 #X obj 34 129 netsync note-3 note-3/idx note-3-set;
 #X obj 34 149 netsync note-4 note-4/idx note-4-set;
 #X obj 33 66 netro timer-1 140;
-#X restore 194 309 pd net;
-#X obj 242 280 cnv 8 24 16 empty ticker empty 20 12 0 14 -258113 -66577
+#X restore 4 309 pd net;
+#X obj 10 280 cnv 8 24 16 empty ticker empty 20 12 0 14 -258113 -66577
 0;
-#X obj 306 309 acid-core acid;
-#X obj 256 9 tgl 32 0 \$0/swing acid/swing/r swing 0 40 0 10 -262144
+#X obj 116 309 acid-core acid;
+#X obj 254 9 tgl 32 0 \$0/swing acid/swing/r swing 0 40 0 10 -262144
 -1 -1 0 1;
+#X obj 371 6 numberbox 64 32 timer-1/bpm_r timer-1/bpm 30 320 140;
+#X obj 10 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 36 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 62 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 88 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 120 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 146 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 172 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 198 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 230 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 256 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 282 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 308 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 339 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 365 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 391 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 417 159 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 10 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi;
+#X obj 10 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 36 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 62 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 88 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10 -262144
+-1 -1 0 1;
+#X obj 120 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 146 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 172 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 198 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 230 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 256 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 282 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 308 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 339 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 365 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 391 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 417 189 tgl 24 0 \$0/slide/0 acid/slide/0/r empty 17 7 0 10
+-262144 -1 -1 0 1;
+#X obj 36 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi;
+#X obj 62 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi;
+#X obj 88 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi;
+#X obj 120 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 146 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 172 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 198 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 230 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 256 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 282 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 308 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 340 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 366 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 392 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 418 220 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 10 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi;
+#X obj 36 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi;
+#X obj 62 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi;
+#X obj 88 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi;
+#X obj 120 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 146 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 172 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 198 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 230 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 256 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 282 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 308 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 340 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 366 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 392 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
+#X obj 418 250 taplist 24 24 acid/octave/0/r \$0/octave/0 lo -- hi
+;
 #X coords 0 -1 1 1 450 300 1 0 0;
