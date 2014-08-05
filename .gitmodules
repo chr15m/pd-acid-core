@@ -1,6 +1,3 @@
-[submodule "pd-net-sync"]
-	path = pd-net-sync
-	url = https://github.com/chr15m/pd-net-sync
 [submodule "rjlib"]
 	path = rjlib
 	url = git@github.com:chr15m/rjlib.git

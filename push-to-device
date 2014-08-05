@@ -1,7 +1,0 @@
-#!/bin/bash
-
-cwd=`pwd`
-name=`basename $cwd`
-pushd ..
-adb -d push $name /sdcard/PdDroidParty/$name
-popd
