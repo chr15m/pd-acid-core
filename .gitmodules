@@ -1,9 +1,9 @@
 [submodule "rjlib"]
 	path = rjlib
-	url = git@github.com:chr15m/rjlib.git
+	url = https://github.com/chr15m/rjlib
 [submodule "sssad"]
 	path = sssad
-	url = git@github.com:chr15m/sssad.git
+	url = https://github.com/chr15m/sssad
 [submodule "blockhead"]
 	path = blockhead
-	url = git@github.com:chr15m/blockhead.git
+	url = https://github.com/chr15m/blockhead
