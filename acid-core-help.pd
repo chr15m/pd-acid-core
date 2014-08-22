@@ -1,39 +1,39 @@
-#N canvas 511 262 649 372 10;
+#N canvas 509 252 649 372 10;
 #X declare -path .;
 #X declare -path ./common/;
 #X declare -path ./blockhead/;
 #X declare -path ./rjlib/rj;
-#X obj 532 316 catch~ acid/out;
-#X obj 532 338 dac~;
+#X obj 532 276 catch~ acid/out;
+#X obj 532 340 dac~;
 #X obj 191 6 acid-core acid;
 #X obj 20 109 f;
 #X obj 50 109 + 1;
 #X obj 20 131 s acid/tick;
 #X obj 20 66 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
 ;
-#X obj 437 191 s acid/globaloctave;
-#X obj 440 96 hsl 128 15 0 127 0 1 acid/cutoff empty acid/cutoff -2
--8 0 10 -262144 -1 -1 7700 1;
+#X obj 437 171 s acid/globaloctave;
+#X obj 440 76 hsl 128 15 0 127 0 1 acid/cutoff empty acid/cutoff -2
+-8 0 10 -262144 -1 -1 6100 1;
 #X obj 20 87 metro 150;
-#X obj 440 127 hsl 128 15 0 127 0 1 acid/rez empty acid/rez -2 -8 0
-10 -262144 -1 -1 200 1;
+#X obj 440 107 hsl 128 15 0 127 0 1 acid/rez empty acid/rez -2 -8 0
+10 -262144 -1 -1 100 1;
 #X msg 182 84 \; acid/pickslide bang \; acid/pickoctave bang \; acid/pickaccent
 bang \; acid/picksequence bang \; acid/picknotes bang \; acid/pickrootnote
 bang \; acid/pickwave bang \; acid/pickswing bang \; acid/pickdecay
 bang \;;
 #X text 179 63 randomize;
-#X obj 437 151 hradio 15 1 1 6 empty empty empty 0 -8 0 10 -262144
--1 -1 1;
-#X obj 437 171 - 2;
+#X obj 437 131 hradio 15 1 1 6 empty empty empty 0 -8 0 10 -262144
+-1 -1 2;
+#X obj 437 151 - 2;
 #X text 16 6 303-style acid instrument ->;
 #X text 41 65 <- start timer;
-#X text 375 95 play ->;
-#X obj 440 263 hsl 128 15 0 300 0 0 acid/decay acid/decay/set acid/decay
--2 -8 0 10 -262144 -1 -1 6265 1;
+#X text 375 75 play ->;
+#X obj 440 243 hsl 128 15 0 300 0 0 acid/decay acid/decay/set acid/decay
+-2 -8 0 10 -262144 -1 -1 9948 1;
 #X msg 481 18 \; acid/seed 1234;
 #X floatatom 191 28 5 0 0 0 - - -;
-#X obj 440 233 hsl 128 15 0 1 0 0 acid/swing acid/swing/set acid/swing
--2 -8 0 10 -262144 -1 -1 0 1;
+#X obj 440 213 hsl 128 15 0 1 0 0 acid/swing acid/swing/set acid/swing
+-2 -8 0 10 -262144 -1 -1 4233 1;
 #X text 18 256 table names and internal data to modify:;
 #X msg 21 275 \; acid/slide = 0 or 1 length 16 \; acid/accent = 0 or
 1 length 16 \; acid/octave = 0 to 2 length 16 \; acid/sequence = 0
@@ -42,8 +42,19 @@ for sequence = 0 to 12 length 4 \;;
 #X text 464 315 output ->;
 #X text 345 17 reproduceable seed ->;
 #X text 344 33 (same each Pd start);
-#X connect 0 0 1 0;
-#X connect 0 0 1 1;
+#N canvas 2 48 450 300 dist 0;
+#X obj 31 83 inlet~;
+#X obj 31 217 outlet~;
+#X text 27 52 rebirth style "foldover" distortion. sounds right?;
+#X obj 183 85 inlet~;
+#X obj 30 153 expr~ sin($v2 * $v1);
+#X connect 0 0 4 0;
+#X connect 3 0 4 1;
+#X connect 4 0 1 0;
+#X restore 532 318 pd dist;
+#X obj 561 298 hsl 64 15 1 20 0 1 empty empty empty -2 -8 0 10 -262144
+-1 -1 6000 1;
+#X connect 0 0 27 0;
 #X connect 2 0 20 0;
 #X connect 3 0 4 0;
 #X connect 3 0 5 0;
@@ -52,3 +63,6 @@ for sequence = 0 to 12 length 4 \;;
 #X connect 9 0 3 0;
 #X connect 13 0 14 0;
 #X connect 14 0 7 0;
+#X connect 27 0 1 0;
+#X connect 27 0 1 1;
+#X connect 28 0 27 1;
