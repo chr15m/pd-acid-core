@@ -1,12 +1,12 @@
-#N canvas 2 48 1099 680 10;
+#N canvas 47 59 1099 680 10;
 #X declare -path .;
 #X declare -path ./common/;
 #X declare -path ./blockhead/;
 #X declare -path ./rjlib/rj;
-#N canvas 113 48 460 631 sequencer 0;
+#N canvas 112 47 460 662 sequencer 0;
 #X obj 195 604 outlet envelope;
-#X obj 26 592 mtof;
-#X obj 26 611 outlet;
+#X obj 72 612 mtof;
+#X obj 72 631 outlet;
 #N canvas 369 141 454 532 \$1/notes 0;
 #X obj 18 6 inlet;
 #X obj 18 499 outlet;
@@ -121,8 +121,8 @@
 #X obj 166 191 != 0;
 #X obj 58 296 spigot 0;
 #X obj 112 19 r \$1/swing;
-#X obj 78 611 s \$0/notestream;
-#X obj 72 562 t f f;
+#X obj 124 631 s \$0/notestream;
+#X obj 72 583 t f f;
 #X obj 26 390 / 1;
 #X obj 44 365 r \$1/speed;
 #X obj 26 411 int;
@@ -149,7 +149,7 @@
 #X obj 144 30 t b f;
 #X obj 279 170 t b f f;
 #X obj 12 79 / 2;
-#X floatatom 26 114 5 0 0 0 - - -;
+#X floatatom 26 114 5 0 0 0 - - -, f 5;
 #X msg 331 239 set \$1;
 #X msg 356 128 0;
 #X connect 0 0 4 0;
@@ -178,6 +178,9 @@
 #X connect 20 0 16 0;
 #X restore 121 77 pd swang;
 #X obj 25 35 t f f f;
+#X obj 72 562 +;
+#X obj 148 501 r \$1/finetune;
+#X obj 148 523 / 127;
 #X connect 1 0 2 0;
 #X connect 3 0 4 0;
 #X connect 4 0 8 0;
@@ -200,7 +203,7 @@
 #X connect 17 0 46 0;
 #X connect 19 0 20 0;
 #X connect 20 0 21 1;
-#X connect 21 0 37 0;
+#X connect 21 0 47 0;
 #X connect 22 0 23 1;
 #X connect 23 0 42 0;
 #X connect 24 0 34 0;
@@ -232,6 +235,9 @@
 #X connect 46 0 13 0;
 #X connect 46 1 12 0;
 #X connect 46 2 45 0;
+#X connect 47 0 37 0;
+#X connect 48 0 49 0;
+#X connect 49 0 47 1;
 #X restore 102 81 pd sequencer;
 #X obj 116 381 vcf~;
 #X obj 141 361 t f f;
@@ -326,7 +332,7 @@
 #X obj 259 254 + 1;
 #X obj 259 277 * 5;
 #X obj 196 281 * 12;
-#N canvas 2 48 450 300 squaresaw 0;
+#N canvas 2 50 450 300 squaresaw 0;
 #X obj 70 192 outlet~;
 #X obj 213 72 != 0;
 #X obj 167 73 == 0;
@@ -481,7 +487,7 @@
 #X obj 643 317 r \$1/goodnotes;
 #X text 315 128 <- how long the notes are;
 #X obj 590 242 r \$1/pickaccent;
-#N canvas 2 48 450 385 pick-octave 0;
+#N canvas 2 50 450 385 pick-octave 0;
 #X obj 44 109 until;
 #X msg 44 87 16;
 #X obj 44 153 >;
@@ -567,7 +573,7 @@
 bang \; \$1/picksequence bang \; \$1/picknotes bang \; \$1/pickwave
 bang \; \$1/pickswing bang \; \$1/pickdecay bang \;;
 #X obj 935 241 r \$1/picknotes;
-#N canvas 2 48 450 300 picknotes 0;
+#N canvas 2 50 450 300 picknotes 0;
 #X obj 13 5 inlet;
 #X msg 32 57 4;
 #X obj 32 79 until;
