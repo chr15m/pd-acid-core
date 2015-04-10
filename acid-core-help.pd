@@ -1,4 +1,4 @@
-#N canvas 217 315 649 402 10;
+#N canvas 216 310 649 402 10;
 #X declare -path .;
 #X declare -path ./common/;
 #X declare -path ./blockhead/;
@@ -9,29 +9,16 @@
 #X obj 20 109 f;
 #X obj 50 109 + 1;
 #X obj 20 131 s acid/tick;
-#X obj 20 66 tgl 15 0 empty empty empty 17 7 0 10 -262144 -1 -1 1 1
+#X obj 20 66 tgl 15 0 empty empty empty 17 7 0 10 -260097 -1 -1 1 1
 ;
-#X obj 494 161 s acid/globaloctave;
-#X obj 497 66 hsl 128 15 0 127 0 1 acid/cutoff empty acid/cutoff -2
--8 0 10 -262144 -1 -1 8200 1;
 #X obj 20 87 metro 150;
-#X obj 497 97 hsl 128 15 0 127 0 1 acid/rez empty acid/rez -2 -8 0
-10 -262144 -1 -1 1000 1;
 #X msg 137 104 \; acid/pickslide bang \; acid/pickoctave bang \; acid/pickaccent
 bang \; acid/picksequence bang \; acid/picknotes bang \; acid/pickrootnote
 bang \; acid/pickwave bang \; acid/pickswing bang \; acid/pickdecay
 bang \;;
 #X text 134 83 randomize;
-#X obj 494 121 hradio 15 1 1 6 empty empty empty 0 -8 0 10 -262144
--1 -1 2;
-#X obj 494 141 - 2;
 #X text 41 65 <- start timer;
-#X text 442 65 play ->;
-#X obj 497 233 hsl 128 15 0 300 0 0 acid/decay acid/decay/set acid/decay
--2 -8 0 10 -262144 -1 -1 3048 1;
 #X floatatom 20 29 5 0 0 0 - - -;
-#X obj 497 203 hsl 128 15 0 1 0 0 acid/swing acid/swing/set acid/swing
--2 -8 0 10 -262144 -1 -1 0 1;
 #X text 18 266 table names and internal data to modify:;
 #X msg 21 285 \; acid/slide = 0 or 1 length 16 \; acid/accent = 0 or
 1 length 16 \; acid/octave = 0 to 2 length 16 \; acid/sequence = 0
@@ -44,34 +31,44 @@ for sequence = 0 to 12 length 4 \;;
 #N canvas 2 48 450 300 seed 0;
 #X obj 7 109 nbx 7 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
 -262144 -1 -1 1039 256;
-#X obj 97 107 + 1;
 #X obj 7 58 inlet;
-#X obj 7 80 f;
 #X obj 7 138 outlet;
-#X connect 0 0 1 0;
-#X connect 0 0 4 0;
-#X connect 1 0 3 1;
-#X connect 2 0 3 0;
+#X obj 7 79 random 65536;
+#X connect 0 0 2 0;
+#X connect 1 0 3 0;
 #X connect 3 0 0 0;
 #X coords 0 -1 1 1 85 30 2 0 100;
 #X restore 297 141 pd seed;
 #X msg 297 175 \; acid/seed \$1 \; acid/makenew bang \;;
-#X obj 297 103 bng 32 250 50 0 empty empty empty 17 7 0 10 -262144
+#X obj 297 103 bng 32 250 50 0 empty empty empty 17 7 0 10 -260097
 -1 -1;
 #X text 118 8 <- 303-style acid instrument;
 #X text 333 101 deterministic seed;
 #X obj 532 328 e_foldover;
-#X connect 0 0 30 0;
-#X connect 2 0 18 0;
+#X obj 494 161 s acid/globaloctave;
+#X obj 497 66 hsl 128 15 0 127 0 1 acid/cutoff empty acid/cutoff -2
+-8 0 10 -262144 -1 -1 8200 1;
+#X obj 497 97 hsl 128 15 0 127 0 1 acid/rez empty acid/rez -2 -8 0
+10 -262144 -1 -1 1000 1;
+#X obj 494 121 hradio 15 1 1 6 empty empty empty 0 -8 0 10 -262144
+-1 -1 2;
+#X obj 494 141 - 2;
+#X text 442 65 play ->;
+#X obj 497 233 hsl 128 15 0 300 0 0 acid/decay acid/decay/set acid/decay
+-2 -8 0 10 -262144 -1 -1 0 1;
+#X obj 497 203 hsl 128 15 0 1 0 0 acid/swing acid/swing/set acid/swing
+-2 -8 0 10 -262144 -1 -1 0 1;
+#X connect 0 0 22 0;
+#X connect 2 0 11 0;
 #X connect 3 0 4 0;
 #X connect 3 0 5 0;
 #X connect 4 0 3 1;
-#X connect 6 0 9 0;
-#X connect 9 0 3 0;
-#X connect 13 0 14 0;
-#X connect 14 0 7 0;
-#X connect 24 0 30 1;
-#X connect 25 0 26 0;
-#X connect 27 0 25 0;
-#X connect 30 0 1 0;
-#X connect 30 0 1 1;
+#X connect 6 0 7 0;
+#X connect 7 0 3 0;
+#X connect 16 0 22 1;
+#X connect 17 0 18 0;
+#X connect 19 0 17 0;
+#X connect 22 0 1 0;
+#X connect 22 0 1 1;
+#X connect 26 0 27 0;
+#X connect 27 0 23 0;
