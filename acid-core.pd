@@ -149,7 +149,7 @@
 #X obj 144 30 t b f;
 #X obj 279 170 t b f f;
 #X obj 12 79 / 2;
-#X floatatom 26 114 5 0 0 0 - - -, f 5;
+#X floatatom 26 114 5 0 0 0 - - -;
 #X msg 331 239 set \$1;
 #X msg 356 128 0;
 #X connect 0 0 4 0;
