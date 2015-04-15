@@ -1,4 +1,4 @@
-#N canvas 19 436 1099 626 10;
+#N canvas 18 431 1099 626 10;
 #X declare -path .;
 #X declare -path ./common/;
 #X declare -path ./blockhead/;
@@ -296,9 +296,9 @@
 #X array \$1/accent 16 float 2;
 #X coords 0 1 15 0 50 25 1;
 #X restore 586 45 graph;
-#N canvas 0 50 450 300 (subpatch) 0;
-#X array \$1/octave 17 float 2;
-#X coords 0 2 15 -1 50 25 1 0 0;
+#N canvas 2 48 450 300 (subpatch) 0;
+#X array \$1/octave 16 float 2;
+#X coords 0 2 16 0 50 25 1 0 0;
 #X restore 654 45 graph;
 #N canvas 0 50 450 300 (subpatch) 0;
 #X array \$1/sequence 16 float 2;
