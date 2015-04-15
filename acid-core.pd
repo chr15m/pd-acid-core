@@ -1,4 +1,4 @@
-#N canvas 224 57 1099 680 10;
+#N canvas 19 436 1099 626 10;
 #X declare -path .;
 #X declare -path ./common/;
 #X declare -path ./blockhead/;
@@ -149,7 +149,7 @@
 #X obj 144 30 t b f;
 #X obj 279 170 t b f f;
 #X obj 12 79 / 2;
-#X floatatom 26 114 5 0 0 0 - - -, f 5;
+#X floatatom 26 114 5 0 0 0 - - -;
 #X msg 331 239 set \$1;
 #X msg 356 128 0;
 #X connect 0 0 4 0;
@@ -291,19 +291,19 @@
 #N canvas 0 50 450 300 (subpatch) 0;
 #X array \$1/slide 16 float 2;
 #X coords 0 1 15 0 50 25 1 0 0;
-#X restore 524 185 graph;
+#X restore 524 45 graph;
 #N canvas 0 50 450 300 (subpatch) 0;
 #X array \$1/accent 16 float 2;
 #X coords 0 1 15 0 50 25 1;
-#X restore 586 185 graph;
+#X restore 586 45 graph;
 #N canvas 0 50 450 300 (subpatch) 0;
 #X array \$1/octave 17 float 2;
-#X coords 0 1 15 -1 50 25 1;
-#X restore 654 185 graph;
+#X coords 0 2 15 -1 50 25 1 0 0;
+#X restore 654 45 graph;
 #N canvas 0 50 450 300 (subpatch) 0;
 #X array \$1/sequence 16 float 2;
 #X coords 0 4 16 0 50 25 1;
-#X restore 723 184 graph;
+#X restore 723 44 graph;
 #X obj 165 299 *~ 12;
 #X obj 128 336 mtof~;
 #N canvas 45 151 450 300 portamento 0;
@@ -331,7 +331,7 @@
 #X obj 259 254 + 1;
 #X obj 259 277 * 5;
 #X obj 196 281 * 12;
-#N canvas 2 48 450 300 squaresaw 1;
+#N canvas 2 48 450 300 squaresaw 0;
 #X obj 70 232 outlet~;
 #X obj 213 165 != 0;
 #X obj 177 165 == 0;
@@ -400,7 +400,7 @@
 #N canvas 0 50 450 300 (subpatch) 0;
 #X array \$1/notes 4 float 2;
 #X coords 0 12 4 0 50 25 1 0 0;
-#X restore 805 184 graph;
+#X restore 805 44 graph;
 #X obj 210 470 r \$0/notestream;
 #X obj 278 72 r \$1/pickdecay;
 #X obj 295 331 s \$1/noteenvelope;
@@ -563,11 +563,11 @@
 ;
 #X obj 210 491 outlet;
 #X obj 116 490 throw~ \$1/out;
-#X msg 526 457 bang;
+#X msg 526 417 bang;
 #X obj 938 43 declare -path ./common/;
-#X obj 526 479 symbol \$1;
-#X obj 526 431 loadbang;
-#X obj 442 431 r \$1/makenew;
+#X obj 526 439 symbol \$1;
+#X obj 526 391 loadbang;
+#X obj 442 391 r \$1/makenew;
 #X obj 485 312 r \$1/newsequence;
 #X obj 894 375 r \$1/picksequence;
 #X obj 919 88 declare -path ./blockhead/;
@@ -612,7 +612,7 @@
 #X msg 317 206 set \$1;
 #X obj 894 467 u_fractal-melody 4 16 \$1/seed;
 #X obj 309 255 r \$1/envmod;
-#X msg 526 511 \; \$1/pickslide bang \; \$1/pickoctave bang \; \$1/pickaccent
+#X msg 526 471 \; \$1/pickslide bang \; \$1/pickoctave bang \; \$1/pickaccent
 bang \; \$1/picksequence bang \; \$1/picknotes bang \; \$1/pickwave
 bang \; \$1/pickswing bang \; \$1/pickdecay bang \; \$1/pickrootnote
 bang \;;
