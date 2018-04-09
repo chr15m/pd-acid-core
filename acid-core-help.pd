@@ -1,4 +1,4 @@
-#N canvas 215 305 649 402 10;
+#N canvas 214 299 649 402 10;
 #X declare -path .;
 #X declare -path ./common/;
 #X declare -path ./blockhead/;
@@ -18,7 +18,7 @@ bang \; acid/pickwave bang \; acid/pickswing bang \; acid/pickdecay
 bang \;;
 #X text 134 83 randomize;
 #X text 41 65 <- start timer;
-#X floatatom 20 29 5 0 0 0 - - -;
+#X floatatom 20 29 5 0 0 0 - - -, f 5;
 #X text 18 266 table names and internal data to modify:;
 #X msg 21 285 \; acid/slide = 0 or 1 length 16 \; acid/accent = 0 or
 1 length 16 \; acid/octave = 0 to 2 length 16 \; acid/sequence = 0
@@ -28,7 +28,7 @@ for sequence = 0 to 12 length 4 \;;
 #X text 332 117 (same each Pd start);
 #X obj 561 302 hsl 64 15 1 20 0 1 empty empty distortion -2 -8 0 10
 -262144 -1 -1 500 1;
-#N canvas 2 48 450 300 seed 0;
+#N canvas 2 50 450 300 seed 0;
 #X obj 7 109 nbx 7 14 -1e+37 1e+37 0 1 empty empty empty 0 -8 0 10
 -262144 -1 -1 1039 256;
 #X obj 7 58 inlet;
@@ -55,11 +55,11 @@ for sequence = 0 to 12 length 4 \;;
 #X obj 494 111 - 2;
 #X text 442 35 play ->;
 #X obj 497 203 hsl 128 15 0 300 0 0 acid/decay acid/decay/set acid/decay
--2 -8 0 10 -262144 -1 -1 3048 1;
+-2 -8 0 10 -262144 -1 -1 6731 1;
 #X obj 497 173 hsl 128 15 0 1 0 0 acid/swing acid/swing/set acid/swing
 -2 -8 0 10 -262144 -1 -1 0 1;
-#X obj 495 235 hradio 15 1 0 2 acid/wave empty sqr/saw 0 -8 0 10 -262144
--1 -1 0;
+#X obj 495 235 hradio 15 1 0 2 acid/wave acid/wave/set sqr/saw 0 -8
+0 10 -262144 -1 -1 0;
 #X connect 0 0 22 0;
 #X connect 2 0 11 0;
 #X connect 3 0 4 0;
